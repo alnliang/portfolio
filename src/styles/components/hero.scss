@@ -1,0 +1,82 @@
+// src/styles/components/hero.scss
+
+@import '../variables'; 
+
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  background: linear-gradient(135deg, $royal-purple, $metallic-silver-blue);
+  color: $text-light;
+
+  .hero-content { 
+    max-width: 700px;
+  }
+
+  .hero-name {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    color: $text-light;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 3px $shadow-color-dark;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: $text-light-secondary;
+    margin-bottom: 2rem;
+    line-height: $base-line-height;
+    text-shadow: 1px 1px 2px $shadow-color-medium;
+  }
+
+  .hero-button {
+    display: inline-block;
+    background-color: $button-bg-transparent;
+    color: $text-light;
+    padding: 0.75rem 1.75rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    box-shadow: 0 2px 4px $shadow-color-medium;
+
+    &:hover, 
+    &:focus {
+      background-color: $button-bg-transparent-hover;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px $shadow-color-light;
+    }
+  }
+
+  .social-links {
+    margin-top: 2.5rem;
+
+    a { 
+      color: $text-light;
+      margin: 0 0.75rem;
+      transition: color 0.3s ease, transform 0.2s ease;
+      display: inline-block;
+
+      svg { 
+        filter: drop-shadow(0 1px 1px $shadow-color-dark);
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        fill: currentColor;
+      }
+
+      &:hover,
+      &:focus {
+        color: $text-light-secondary;
+        transform: scale(1.1);
+      }
+    }
+  }
+}
