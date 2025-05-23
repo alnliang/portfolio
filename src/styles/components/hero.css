@@ -14,7 +14,7 @@
   /* You can adjust the angle (e.g., 135deg, to right, to bottom right) */
   /* Royal Purple: ~ #6A0DAD or #7851A9 */
   /* Light Blue: ~ #ADD8E6 or #87CEEB or #A7D3E8 */
-  background: linear-gradient(135deg, #6A0DAD, #A7D3E8);
+  background: linear-gradient(135deg, #6A0DAD, #B0C4DE);
 
   /* Adjust text color for readability on the gradient */
   color: white;
