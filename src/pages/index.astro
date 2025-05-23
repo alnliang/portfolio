@@ -1,11 +1,7 @@
 ---
-// src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Greeting from '../components/react/Greeting.jsx';
+import Hero from '../components/astro/Hero.astro';
 ---
 <BaseLayout title="Alan Liang | AI/LLM Engineer">
-    <h1>Welcome to Alan Liang's Portfolio</h1>
-    <p>IN PROGRESS</p>
-
-    <Greeting client:load message="Hello from Astro + React" />
+  <Hero slot="hero" /> 
 </BaseLayout>
