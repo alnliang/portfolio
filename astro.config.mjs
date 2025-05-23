@@ -9,4 +9,5 @@ import icon from 'astro-icon';
 export default defineConfig({
   integrations: [react(), icon()],
   site: 'https://alnliang.github.io',
+  base: 'portfolio',
 });
