@@ -1,7 +1,71 @@
 ---
+// src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/astro/Hero.astro';
+import BackgroundGradient from '../components/astro/BackgroundGradient.astro';
+import HeroContent from '../components/astro/HeroContent.astro';
+import AboutContent from '../components/astro/AboutContent.astro';
 ---
 <BaseLayout title="Alan Liang | AI/LLM Engineer">
-  <Hero slot="hero" /> 
+  <BackgroundGradient>
+    <HeroContent slot="hero" id="hero-content-section" />
+    <AboutContent slot="about" id="about-content-section" />
+  </BackgroundGradient>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const scrollContainer = document.getElementById('scrollable-background');
+      const heroContentSection = document.getElementById('hero-content-section');
+      const aboutContentSection = document.getElementById('about-content-section');
+
+      if (!scrollContainer || !heroContentSection || !aboutContentSection) {
+        console.error('Essential elements not found for scroll animation.');
+        return;
+      }
+
+      const containerViewportHeight = scrollContainer.clientHeight;
+      const heroFadeOutStartScroll = containerViewportHeight * 0.20;
+      const heroFadeOutEndScroll = containerViewportHeight * 0.55;
+      const aboutSectionOffsetTop = aboutContentSection.offsetTop;
+
+      let scrollY = scrollContainer.scrollTop; 
+      let ticking = false;
+
+      function updateAnimations() {
+        if (scrollY >= heroFadeOutStartScroll && scrollY <= heroFadeOutEndScroll) {
+          const fadeProgress = (scrollY - heroFadeOutStartScroll) / (heroFadeOutEndScroll - heroFadeOutStartScroll);
+          heroContentSection.style.opacity = Math.max(0, 1 - fadeProgress).toString();
+        } else if (scrollY < heroFadeOutStartScroll) {
+          heroContentSection.style.opacity = '1';
+        } else {
+          heroContentSection.style.opacity = '0';
+        }
+
+        const aboutFadeInThreshold = aboutSectionOffsetTop - (containerViewportHeight * 0.80);
+        if (scrollY > aboutFadeInThreshold) {
+          if (!aboutContentSection.classList.contains('is-visible')) {
+            aboutContentSection.classList.add('is-visible');
+          }
+        } else {
+          if (scrollY < aboutSectionOffsetTop - containerViewportHeight) {
+            if (aboutContentSection.classList.contains('is-visible')) {
+              aboutContentSection.classList.remove('is-visible');
+            }
+          }
+        }
+        ticking = false; 
+      }
+
+      function onScroll() {
+        scrollY = scrollContainer.scrollTop; 
+        if (!ticking) {
+          window.requestAnimationFrame(updateAnimations);
+          ticking = true; 
+        }
+      }
+
+      scrollContainer.addEventListener('scroll', onScroll, { passive: true });
+      scrollY = scrollContainer.scrollTop; 
+      updateAnimations(); 
+    });
+  </script>
 </BaseLayout>

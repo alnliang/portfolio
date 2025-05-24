@@ -1,0 +1,19 @@
+// src/styles/components/background-gradient.scss
+@import '../variables';
+
+.background-gradient-container {
+  width: 100%;
+  height: 100vh; 
+  overflow-y: auto;   
+  overflow-x: hidden;
+  position: relative; 
+  background: linear-gradient(135deg, $royal-purple, $metallic-silver-blue);
+  scroll-behavior: smooth; 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+// .scroll-content-wrapper {
+// }

@@ -1,32 +1,39 @@
 ---
-// src/components/astro/Hero.astro
-import '../../styles/components/hero.scss';
-import { Icon } from 'astro-icon/components'
+// src/components/astro/HeroContent.astro
+import '../../styles/components/hero-content.scss';
+import { Icon } from 'astro-icon/components';
 
 const resumeFileName = "Alan_Liang_Resume_v4.pdf";
----
+const yourEmailAddress = "aqliang@usc.edu";
 
-<section class="hero-section">
-  <div class="hero-content">
+
+export interface Props {
+  isVisible?: boolean; 
+}
+const { isVisible = true } = Astro.props;
+---
+<section
+  id="hero-content-section"
+  class:list={["hero-content-section", { 'is-fading-out': !isVisible }]}
+>
+  <div class="hero-actual-content">
     <h1 class="hero-name">Alan Liang.</h1>
     <p class="hero-tagline">
       AI/LLM Software Engineer. Crafting intelligent solutions with code and Large Language Models.
     </p>
-    <a href={`https://alnliang.github.io/portfolio/${resumeFileName}`} download class="hero-button" target=`_blank`>
+    <a href={`https://alnliang.github.io/portfolio/${resumeFileName}`} target="_blank" class="hero-button">
       Download Resume
     </a>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/alan-liang-71080121b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-        <Icon name="simple-icons:linkedin" /> 
+        <Icon name="simple-icons:linkedin" />
       </a>
       <a href="https://github.com/alnliang" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
         <Icon name="simple-icons:github" />
       </a>
-      <a href="mailto:aqliang@usc.edu" target="_blank" rel="noopener noreferrer" aria-label="Contact">
+      <a href={`mailto:${yourEmailAddress}`} aria-label="Email Me">
         <Icon name="simple-icons:gmail" />
       </a>
     </div>
   </div>
 </section>
-
-<!-- No <style> tag here anymore -->

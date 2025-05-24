@@ -1,0 +1,20 @@
+---
+// src/components/astro/AboutContent.astro
+import '../../styles/components/about-content.scss'; 
+
+export interface Props {
+  isVisible?: boolean;
+}
+const { isVisible = false } = Astro.props; 
+---
+<section
+  id="about-content-section"
+  class:list={["about-content-section", { 'is-visible': isVisible }]}
+>
+  <div class="about-actual-content">
+    <h2>About Me</h2>
+    <p>
+      Lorem whatever whats up
+    </p>
+  </div>
+</section>
